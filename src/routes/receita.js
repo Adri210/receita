@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 function RecipeDetail() {
   const { id } = useParams();
   const [receita, setReceita] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:5004/receitas/${id}`) // Corrigido para a porta correta
+    fetch(`http://localhost:5004/receitas/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Erro ao buscar receita');
@@ -16,13 +17,7 @@ function RecipeDetail() {
         return response.json();
       })
       .then((data) => {
-        console.log('Dados recebidos:', data); // Verifique o formato dos dados recebidos
-
-        if (data && data.id === parseInt(id, 10)) {
-          setReceita(data);
-        } else {
-          setError('Receita não encontrada');
-        }
+        setReceita(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -31,6 +26,23 @@ function RecipeDetail() {
         setLoading(false);
       });
   }, [id]);
+
+  const handleDelete = () => {
+    fetch(`http://localhost:5004/receitas/${id}`, {
+      method: 'DELETE',
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Erro ao excluir receita');
+      }
+      // Redirecionar para a lista de receitas após exclusão
+      navigate('/');
+    })
+    .catch((error) => {
+      console.error('Erro:', error);
+      setError(error.message);
+    });
+  };
 
   if (loading) {
     return <p>Carregando...</p>;
@@ -55,6 +67,8 @@ function RecipeDetail() {
       </ul>
       <h2>Modo de Preparo:</h2>
       <p>{receita.modoDePreparo}</p>
+      <button onClick={handleDelete}>Excluir Receita</button>
+      <br />
       <Link to="/">Voltar para a lista de receitas</Link>
       <br />
       <Link to="/NewReceita">Adicionar Nova Receita</Link>

@@ -184,7 +184,20 @@ app.post('/receitas', (req, res) => {
   res.status(201).json(novaReceita);
 });
 
+
 // Inicia o servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
+});
+
+// Endpoint para excluir uma receita específica pelo ID
+app.delete('/receitas/:id', (req, res) => {
+  const receitaId = parseInt(req.params.id, 10);
+  const index = receitas.findIndex(r => r.id === receitaId);
+  if (index !== -1) {
+    receitas.splice(index, 1); // Remove a receita do array
+    res.status(204).end(); // Retorna status 204 No Content
+  } else {
+    res.status(404).json({ message: 'Receita não encontrada' });
+  }
 });
