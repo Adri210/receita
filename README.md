@@ -32,29 +32,27 @@ Certifique-se de ter instalado:
 
 1. Clone o repositório para sua máquina local:
 
-   ```bash
+  
    git clone https://github.com/seu-usuario/sistema-receitas.git
-   ```
+
 
 2. Navegue para o diretório do projeto:
 
-   ```bash
+
    cd sistema-receitas
-   ```
+ 
 
 3. Instale as dependências do backend e do frontend:
 
    - Na pasta *server.js* (para backend):
-     ```
+   
     npm install -g json-server
     json-server --watch db.json --port 5004
-     ```
-
    
   - Para o frontend:
-     ```
+     
      npm install
-     ```
+     
 
 
 ## Estrutura do Projeto
