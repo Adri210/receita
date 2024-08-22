@@ -1,70 +1,86 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Sistema de Receitas
 
-In the project directory, you can run:
+Este projeto é um sistema de gerenciamento de receitas, desenvolvido com **React** no frontend e **Express** no backend. Ele permite visualizar, adicionar, excluir e buscar receitas.
 
-### `npm start`
+## Funcionalidades
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Listar todas as receitas disponíveis.
+- Visualizar detalhes de uma receita específica.
+- Adicionar uma nova receita ao sistema.
+- Excluir uma receita existente.
+  
+## Tecnologias Utilizadas
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend:** React
+- **Backend:** Express (Node.js)
+- **Banco de Dados:** Array in-memory (não persistente)
+- **Estilização:** CSS
+- **Comunicação:** API REST utilizando o método `fetch`
 
-### `npm test`
+## Instalação
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Pré-requisitos
 
-### `npm run build`
+Certifique-se de ter instalado:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Node.js** (versão 12 ou superior)
+- **npm** ou **yarn** (gerenciador de pacotes)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Instruções de Instalação
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone o repositório para sua máquina local:
 
-### `npm run eject`
+   ```bash
+   git clone https://github.com/seu-usuario/sistema-receitas.git
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Navegue para o diretório do projeto:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   cd sistema-receitas
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Instale as dependências do backend e do frontend:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   - Na pasta *server.js* (para backend):
+     ```
+    npm install -g json-server
+    json-server --watch db.json --port 5004
+     ```
 
-## Learn More
+   
+  - Para o frontend:
+     ```
+     npm install
+     ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Estrutura do Projeto
 
-### Code Splitting
+```
+/public
+   |-- /styles       # Arquivos de estilo CSS
+   |-- /images       # Imagens usadas na aplicação
+/server               # Código do servidor Express
+/src                  # Código fonte do frontend React
+   |-- /components    # Componentes React
+   |-- App.js         # Componente principal do React
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Como Usar
 
-### Analyzing the Bundle Size
+1. Ao iniciar a aplicação, a página principal exibirá a lista de receitas disponíveis.
+2. Clique no título de qualquer receita para visualizar seus detalhes.
+3. Utilize o botão "Adicionar Nova Receita" para incluir uma nova receita no sistema.
+4. No detalhe de uma receita, você pode excluir a mesma clicando no botão "Excluir Receita".
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## Contato
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Nome: Adriani Delfino
+- E-mail: engs-adrianidelfino@camporeal.edu.br
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

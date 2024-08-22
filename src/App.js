@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import Home from './routes/Home';
 import Receita from './routes/receita';
-import NewReceita from './newReceita';
+import NewReceita from './routes/newReceita';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';  // Certifique-se de que o caminho esteja correto
+import App from './App.js';  // Certifique-se de que o caminho esteja correto
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

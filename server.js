@@ -1,9 +1,9 @@
 const express = require('express');
-const cors = require('cors'); // Importa o middleware cors
+const cors = require('cors');
 const app = express();
-const port = 5004; // Porta para a API
+const port = 5004;
 
-// Dados de receitas simulados
+
 const receitas = [
   {
     id: 1,
@@ -148,18 +148,18 @@ const receitas = [
   }
 ];
 
-// Middleware para permitir requisições de origens diferentes
+
 app.use(cors());
 
-// Middleware para servir arquivos estáticos (opcional)
+
 app.use(express.static('public'));
 
-// Endpoint para obter todas as receitas
+
 app.get('/receitas', (req, res) => {
   res.json(receitas);
 });
 
-// Endpoint para obter uma receita específica pelo ID
+
 app.get('/receitas/:id', (req, res) => {
   const receitaId = parseInt(req.params.id, 10);
   const receita = receitas.find(r => r.id === receitaId);
@@ -176,7 +176,7 @@ app.post('/receitas', (req, res) => {
     return res.status(400).json({ message: 'Dados da receita inválidos' });
   }
 
-  // Gerar um novo ID (simplesmente incrementando o último ID)
+  
   const novoId = receitas.length ? Math.max(...receitas.map(r => r.id)) + 1 : 1;
   novaReceita.id = novoId;
 
@@ -185,18 +185,18 @@ app.post('/receitas', (req, res) => {
 });
 
 
-// Inicia o servidor
+
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
 
-// Endpoint para excluir uma receita específica pelo ID
+
 app.delete('/receitas/:id', (req, res) => {
   const receitaId = parseInt(req.params.id, 10);
   const index = receitas.findIndex(r => r.id === receitaId);
   if (index !== -1) {
-    receitas.splice(index, 1); // Remove a receita do array
-    res.status(204).end(); // Retorna status 204 No Content
+    receitas.splice(index, 1); 
+    res.status(204).end(); 
   } else {
     res.status(404).json({ message: 'Receita não encontrada' });
   }
