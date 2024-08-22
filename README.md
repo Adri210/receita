@@ -19,7 +19,9 @@ Este projeto é um sistema de gerenciamento de receitas, desenvolvido com **Reac
 - **Estilização:** CSS
 - **Comunicação:** API REST utilizando o método `fetch`
 
-## Instalação
+## Deploy
+
+https://mastersoftchef.netlify.app/
 
 ### Pré-requisitos
 
