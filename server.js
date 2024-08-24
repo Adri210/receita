@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = 5004;
+const port = process.env.PORT || 5004;
 
-
+// Dados de exemplo
 const receitas = [
   {
     id: 1,
@@ -148,18 +148,18 @@ const receitas = [
   }
 ];
 
-
+// Middleware para permitir CORS
 app.use(cors());
 
+// Middleware para parser JSON
+app.use(express.json());
 
-app.use(express.static('public'));
-
-
+// Endpoint para obter todas as receitas
 app.get('/receitas', (req, res) => {
   res.json(receitas);
 });
 
-
+// Endpoint para obter uma receita específica por ID
 app.get('/receitas/:id', (req, res) => {
   const receitaId = parseInt(req.params.id, 10);
   const receita = receitas.find(r => r.id === receitaId);
@@ -170,34 +170,32 @@ app.get('/receitas/:id', (req, res) => {
   }
 });
 
+// Endpoint para criar uma nova receita
 app.post('/receitas', (req, res) => {
   const novaReceita = req.body;
   if (!novaReceita.titulo || !novaReceita.ingredientes || !novaReceita.modoDePreparo) {
     return res.status(400).json({ message: 'Dados da receita inválidos' });
   }
 
-  
   const novoId = receitas.length ? Math.max(...receitas.map(r => r.id)) + 1 : 1;
   novaReceita.id = novoId;
-
   receitas.push(novaReceita);
   res.status(201).json(novaReceita);
 });
 
-
-
-app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
-});
-
-
+// Endpoint para deletar uma receita por ID
 app.delete('/receitas/:id', (req, res) => {
   const receitaId = parseInt(req.params.id, 10);
   const index = receitas.findIndex(r => r.id === receitaId);
   if (index !== -1) {
-    receitas.splice(index, 1); 
-    res.status(204).end(); 
+    receitas.splice(index, 1);
+    res.status(204).end();
   } else {
     res.status(404).json({ message: 'Receita não encontrada' });
   }
+});
+
+// Inicializa o servidor
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
 });
